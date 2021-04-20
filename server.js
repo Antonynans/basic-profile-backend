@@ -13,7 +13,19 @@ require("./db");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+// var allowedOrigins = ['http://localhost:3001',
+//                       'https://myonline-stores.herokuapp.com/'];
+// app.use(cors({
+//   origin: function(origin, callback){
+//     if(!origin)return callback(null, true);
+//     if(allowedOrigins.indexOf(origin) === -1) {
+//       var msg = 'The CORS policy for this site does not ' +
+//                 'allow access from the specified Origin.';
+//       return res.json({status:'error', msg});
+//     }
+//     return callback(null, true);
+//   }
+// }));
 app.use(express.json());
 
 const User = require("./models/userSchema");
@@ -93,6 +105,9 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.get('/', function (req, res) {
+  res.render('index', {});
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
