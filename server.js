@@ -67,7 +67,7 @@ app.get("/profile/id/:id", async (req, res) => {
   res.json(doc);
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const doc = await User.findOne({ email: req.body.email });
   if (doc) {
     if (bcrypt.compareSync(req.body.password, doc.password)) {
