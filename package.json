@@ -19,7 +19,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "server": "node server.js",
+    "client": "npm run start --prefix client"
   },
   "author": "iiamantoni",
   "license": "ISC"
