@@ -32,7 +32,7 @@ app.use(express.json());
 
 const User = require("./models/userSchema");
 
-app.put("/profile", async (req, res) => {
+app.put("/api/profile", async (req, res) => {
   try {
     var form = new formidable.IncomingForm();
     form.parse(req, async (err, fields, files) => {
@@ -62,7 +62,7 @@ const uploadImage = async (files, doc) => {
 };
 app.use(express.static(__dirname + "/uploaded"));
 
-app.get("/profile/id/:id", async (req, res) => { 
+app.get("/api/profile/id/:id", async (req, res) => { 
   let doc = await User.findOne({ _id: req.params.id });
   res.json(doc);
 });
@@ -97,7 +97,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 8);
     await User.create(req.body);
